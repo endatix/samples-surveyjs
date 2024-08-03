@@ -1,3 +1,7 @@
-**/bundles/
+!wwwroot/bundles/.gitignore
+wwwroot/bundles/
+
 **/css/bootstrap.min.css
-**/lib/requirejs/
+
+!wwwroot/lib/requirejs/.gitignore
+wwwroot/lib/requirejs/
