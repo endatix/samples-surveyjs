@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@{
+    var version = 1;
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RequireJs.InlineConfiguration</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="https://unpkg.com/survey-core@1.11.9/defaultV2.css">
+    <link rel="stylesheet" href="https://unpkg.com/survey-creator-core@1.11.9/survey-creator-core.css">
+
+    <script type="text/javascript">
+        var require = {
+            baseUrl: "/bundles",
+            paths: {
+                jquery: "jquery",
+                moment: "moment",
+                bootstrap: "bootstrap.bundle",
+                select2: "select2",
+                knockout: "knockout-latest",
+                "survey-core": "survey.core",
+                "survey-creator-core": "survey-creator-core",
+                "survey-knockout-ui": "survey-knockout-ui",
+                "survey-creator-knockout": "survey-creator-knockout",
+                "jsonData": "../js/json-data"
+            },
+            shim: {
+                moment: {
+                    deps: ["jquery"],
+                },
+                bootstrap: {
+                    deps: ["jquery"],
+                },
+                select2: {
+                    deps: ["jquery"],
+                },
+                "survey-creator-core": {
+                    deps: ["survey-core"],
+                },
+                "survey-knockout-ui": {
+                    deps: ["survey-core", "knockout"],
+                },
+                "survey-creator-knockout": {
+                    deps: [
+                        "survey-core",
+                        "survey-creator-core",
+                        "survey-knockout-ui",
+                        "knockout",
+                    ],
+                },
+            },
+            deps: ["jquery", "bootstrap", "moment"],
+            urlArgs: "v=@version"
+        };
+    </script>
+    <script src="~/lib/requirejs/require.js" asp-append-version="true"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home"
+                    asp-action="Index">RequireJs.InlineConfiguration</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - RequireJs.InlineConfiguration - <a asp-area="" asp-controller="Home"
+                asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

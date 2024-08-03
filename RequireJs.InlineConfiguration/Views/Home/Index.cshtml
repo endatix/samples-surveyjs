@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="surveyCreatorContainer" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        require(["select2", "survey-core", "survey-creator-knockout", "../js/test", "jsonData"], function (select2, Survey, SurveyCreatorKnockout, testJs, jsonData) {
+            console.log("Survey:", Survey);
+            console.log("SurveyCreatorKnockout:", SurveyCreatorKnockout);
+
+            if (SurveyCreatorKnockout && jsonData) {
+                $(function () {
+                    const options = {
+                        showLogicTab: true,
+                    };
+                    const creator = new SurveyCreatorKnockout.SurveyCreator(options);
+                    creator.JSON = jsonData.surveyJSON;
+                    creator.render("surveyCreatorContainer");
+                });
+            }
+        });
+    </script>
+}

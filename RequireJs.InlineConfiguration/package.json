@@ -1,0 +1,26 @@
+{
+  "name": "surveyjs-sample-with-requirejs-and-aspnet",
+  "version": "1.0.0",
+  "description": "An ASP.NET project using RequireJS to load SurveyJS modules",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run copy-files && dotnet run",
+    "copy-files": "node copy-files.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "latest",
+    "jquery": "latest",
+    "knockout": "latest",
+    "moment": "latest",
+    "requirejs": "latest",
+    "select2": "latest",
+    "survey-core": "latest",
+    "survey-creator-core": "latest",
+    "survey-creator-knockout": "latest",
+    "survey-knockout-ui": "latest"
+  },
+  "devDependencies": {
+  }
+}
