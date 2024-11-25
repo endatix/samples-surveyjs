@@ -10,16 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "latest",
-    "jquery": "latest",
     "knockout": "latest",
-    "moment": "latest",
     "requirejs": "latest",
-    "select2": "latest",
     "survey-core": "latest",
+    "survey-knockout-ui": "latest",
     "survey-creator-core": "latest",
-    "survey-creator-knockout": "latest",
-    "survey-knockout-ui": "latest"
+    "survey-creator-knockout": "latest"
   },
   "devDependencies": {
   }

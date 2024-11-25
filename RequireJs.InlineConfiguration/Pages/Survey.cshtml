@@ -1,0 +1,19 @@
+﻿@page
+@{
+    ViewData["Title"] = "Survey Library Example";
+}
+
+<div id="surveyContainer" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        require(["survey-knockout-ui", "jsonData"], function (SurveyLibraryKnockout, jsonData) {
+            console.log("Survey:", SurveyLibraryKnockout);
+
+            if (SurveyLibraryKnockout && jsonData) {
+                var survey = new SurveyLibraryKnockout.Survey(jsonData.surveyJSON);
+                survey.render(document.getElementById("surveyContainer"));
+            }
+        });
+    </script>
+}
