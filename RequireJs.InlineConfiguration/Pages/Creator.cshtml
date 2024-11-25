@@ -1,0 +1,23 @@
+﻿@page
+@{
+    ViewData["Title"] = "Survey Creator Example";
+}
+
+<div id="surveyCreatorContainer" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%"></div>
+
+@section Scripts {
+        <script type="text/javascript">
+            require(["survey-creator-knockout", "jsonData"], function (SurveyCreatorKnockout, jsonData) {
+                console.log("SurveyCreatorKnockout:", SurveyCreatorKnockout);
+
+                if (SurveyCreatorKnockout && jsonData) {
+                   const options = {
+                        showLogicTab: true,
+                    };
+                    const creator = new SurveyCreatorKnockout.SurveyCreator(options);
+                    creator.JSON = jsonData.surveyJSON;
+                    creator.render("surveyCreatorContainer");
+                }
+            });
+        </script>
+}

@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@{
+    var version = 1;
+    string pageRoute = ViewContext.RouteData.Values["page"] as string;
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - RequireJS.InlineConfiguration</title>
+    <link rel="stylesheet" href="https://unpkg.com/survey-core@1.11.9/defaultV2.css">
+    <link rel="stylesheet" href="https://unpkg.com/survey-creator-core@1.11.9/survey-creator-core.css">
+
+    @await RenderSectionAsync("Head", required: false)
+
+    <script type="text/javascript">
+        var require = {
+            baseUrl: "/bundles",
+            paths: {
+                knockout: "knockout-latest",
+                "survey-core": "survey.core.min",
+                "survey-creator-core": "survey-creator-core.min",
+                "survey-knockout-ui": "survey-knockout-ui.min",
+                "survey-creator-knockout": "survey-creator-knockout.min",
+                "jsonData": "../js/json-data"
+            },
+            shim: {
+                "survey-creator-core": {
+                    deps: ["survey-core"],
+                },
+                "survey-knockout-ui": {
+                    deps: ["survey-core", "knockout"],
+                },
+                "survey-creator-knockout": {
+                    deps: [
+                        "survey-creator-core",
+                        "survey-knockout-ui"
+                    ],
+                },
+            },
+            urlArgs: "v=@version"
+        };
+    </script>
+    <script src="~/lib/requirejs/require.js" asp-append-version="true"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 flex flex-col h-screen justify-between">
+    @if (pageRoute == "/Index")
+    {
+        <nav class="bg-white shadow-md z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex-shrink-0">
+                        <a href="https://github.com/endatix/samples-surveyjs/" target="_blank" class="text-lg font-bold text-indigo-600">SurveyJS with RequireJS
+                            Samples</a>
+                    </div>
+                    <div class="hidden md:flex space-x-6">
+                        <a class="text-green-500 hover:text-green-700" asp-page="/Creator">Survey Creator Sample</a>
+                        <a class="text-green-500 hover:text-green-700" asp-page="/Survey">Survey Library Sample</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    }
+    <main role="main" class="class=" max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8"">
+        @RenderBody()
+    </main>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
