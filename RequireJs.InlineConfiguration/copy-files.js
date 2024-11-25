@@ -7,44 +7,33 @@ const libs_folder = "wwwroot/lib/requirejs";
 
 const operations = [
   {
-    src: "node_modules/bootstrap/dist/css/bootstrap.min.css",
-    dest: "wwwroot/css"
-  },
-  {
-    src: "node_modules/jquery/dist/jquery.js",
-    dest: bundle_folder,
-  },
-  {
-    src: "node_modules/moment/moment.js",
-    dest: bundle_folder,
-  },
-  {
-    src: "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
-    dest: bundle_folder,
-  },
-  { src: "node_modules/select2/dist/js/select2.js", dest: bundle_folder },
-  {
     src: "node_modules/knockout/build/output/knockout-latest.js",
+    name: "knockout",
     dest: bundle_folder,
   },
   {
-    src: "node_modules/survey-core/survey.core.js",
+    src: "node_modules/survey-core/survey.core.min.js",
+    name: "survey-core",
     dest: bundle_folder,
   },
   {
-    src: "node_modules/survey-creator-core/survey-creator-core.js",
+    src: "node_modules/survey-core/themes/index.min.js",
+    name: "survey-core/themes",
     dest: bundle_folder,
   },
   {
-    src: "node_modules/survey-knockout-ui/survey-knockout-ui.js",
+    src: "node_modules/survey-knockout-ui/survey-knockout-ui.min.js",
+    name: "survey-knockout-ui",
     dest: bundle_folder,
   },
   {
-    src: "node_modules/survey-creator-knockout/survey-creator-knockout.js",
+    src: "node_modules/survey-creator-core/survey-creator-core.min.js",
+    name: "survey-creator-core",
     dest: bundle_folder,
   },
   {
-    src: "node_modules/survey-creator-core/survey-creator-core.js",
+    src: "node_modules/survey-creator-knockout/survey-creator-knockout.min.js",
+    name: "survey-creator-knockout",
     dest: bundle_folder,
   },
   {
@@ -60,8 +49,8 @@ operations.forEach((copyOperation) => {
   const dest = path.join(__dirname, copyOperation.dest, path.basename(src));
   try {
     fs.copyFileSync(src, dest);
-    console.log(`✅ Success: ${path.basename(src)} was copied to folder "${path.basename(copyOperation.dest)}"`);
-  } 
+    console.log(`✅ Success for >>${copyOperation.name}<< | ${path.basename(src)} was copied to folder "${path.basename(copyOperation.dest)}"`);
+  }
   catch {
     const errorMessage = `❗️ Error:   ${path.basename(src)} was NOT copied to folder "${path.basename(copyOperation.dest)}"`;
     errors.push(errorMessage);
